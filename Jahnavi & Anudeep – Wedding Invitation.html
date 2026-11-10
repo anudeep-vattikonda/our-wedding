@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jahnavi &amp; Anudeep – Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&family=Pinyon+Script&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+/* Colour tokens: light = rose-tinted paper, dark = candlelit aubergine */
+:root{--bg:#fbf0ee;--card:#fff8f6;--ink:#3b1d2a;--muted:#7d5a66;--rose:#a8456b;--gold:#c98a1e;--line:#ecd3d0;--glow:rgba(217,154,43,.28);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1020;--card:#2a1830;--ink:#f7e6e1;--muted:#cfaab4;--rose:#e58aaa;--gold:#e8b04f;--line:#4a2d52;--glow:rgba(232,176,79,.22)}}
+:root[data-theme="dark"]{--bg:#1d1020;--card:#2a1830;--ink:#f7e6e1;--muted:#cfaab4;--rose:#e58aaa;--gold:#e8b04f;--line:#4a2d52;--glow:rgba(232,176,79,.22)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.15rem/1.65 "Cormorant Garamond",Georgia,serif;overflow-x:clip}
+body.locked{overflow:hidden}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+.wrap{max-width:34rem;margin:0 auto;padding:0 1.4rem}
+.sans{font-family:Jost,system-ui,sans-serif}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+
+/* Opening letter (the one orchestrated moment) */
+#reveal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--bg);padding:env(safe-area-inset-top,0px) 1.4rem env(safe-area-inset-bottom,0px);text-align:center;transition:opacity 1.1s ease,visibility 1.1s}
+#reveal.open{opacity:0;visibility:hidden}
+.envelope{width:min(19rem,80vw);aspect-ratio:1.45;position:relative;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 14px 40px var(--glow)}
+.envelope .flap{position:absolute;left:0;top:0;width:100%;height:56%;background:var(--line);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .9s ease}
+#reveal.open .flap{transform:rotateX(180deg)}
+.seal{position:absolute;left:50%;top:50%;width:4.2rem;height:4.2rem;margin:-2.1rem 0 0 -2.1rem;border-radius:50%;border:0;background:var(--rose);color:#fff7f3;font:italic 500 1.25rem "Playfair Display",Georgia,serif;cursor:pointer;box-shadow:0 0 0 6px var(--glow);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.07);opacity:.88}}
+.hint{margin-top:1.6rem;color:var(--muted);font-style:italic}
+
+/* Hero */
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;position:relative;padding:3rem 0}
+.hero::before{content:"";position:absolute;left:50%;top:42%;width:26rem;height:26rem;max-width:130vw;margin:-13rem 0 0 -13rem;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 68%);animation:flicker 5s ease-in-out infinite;pointer-events:none}
+@keyframes flicker{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+.hero .wrap{position:relative}
+.names{font:italic 500 clamp(2.8rem,13vw,4.2rem)/1.15 "Playfair Display",Georgia,serif;color:var(--rose);margin:.8rem 0 .4rem}
+.names span{display:block}
+.names i{display:block;font:400 1.4em/1.1 "Pinyon Script",cursive;color:var(--gold)}
+.lead{font-style:italic;color:var(--muted);max-width:24rem;margin:0 auto 1.4rem}
+.date{font:500 1rem/1.4 Jost,sans-serif;letter-spacing:.04em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.6rem 1.5rem;border-radius:999px;border:1px solid var(--rose);background:transparent;color:var(--rose);font:500 1rem Jost,sans-serif;text-decoration:none;cursor:pointer}
+.btn.fill{background:var(--rose);color:var(--bg)}
+.hero .btn{margin-top:1.6rem}
+
+section{padding:4.5rem 0}
+h2{font:400 2.3rem/1.2 "Cormorant Garamond",serif;text-align:center;margin-bottom:.6rem}
+.sub{text-align:center;color:var(--muted);font-style:italic;margin-bottom:2.4rem}
+.rule{width:3rem;height:1px;background:var(--gold);margin:0 auto 1.4rem}
+
+/* Story note */
+.note{text-align:center;font-size:1.3rem}
+.note p+p{margin-top:1rem;color:var(--muted);font-style:italic}
+
+/* Countdown */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;text-align:center}
+.count div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem .2rem}
+.count b{display:block;font:400 2.1rem/1 "Cormorant Garamond",serif;color:var(--rose)}
+.count small{font:400 .9rem Jost,sans-serif;color:var(--muted)}
+#done{display:none;text-align:center;font:italic 500 2.4rem "Playfair Display",Georgia,serif;color:var(--rose)}
+
+/* Events: a thread running down the page, like lines in a letter */
+.thread{position:relative;padding-left:1.6rem}
+.thread::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform 2.4s ease .3s}
+.ev{position:relative;margin-bottom:2.2rem;opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease}
+.ev::before{content:"";position:absolute;left:calc(-1.6rem - 5px);top:.7rem;width:9px;height:9px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .6s ease}
+.ev h3{font:400 2rem/1.2 "Cormorant Garamond",serif}
+.ev .when{font:500 1rem Jost,sans-serif;color:var(--rose);margin:.2rem 0 .5rem}
+.ev p{color:var(--muted)}
+.ev .row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.9rem}
+
+/* Gallery */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.tile{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;color:var(--gold)}
+.tile.wide{grid-column:span 2;aspect-ratio:16/10}
+.tile img,.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+.tile video{cursor:auto}
+.tile svg{width:2rem;height:2rem}
+#lb{position:fixed;inset:0;z-index:40;display:none;place-items:center;background:rgba(20,8,16,.92);padding:1rem}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:90svh;border-radius:8px}
+
+footer{text-align:center;padding:3rem 0 4rem}
+footer .names{font-size:2.4rem;margin:0 0 .6rem}
+footer p{color:var(--muted)}
+
+.fade{opacity:0;transition:opacity 1s ease}
+.fade.in{opacity:1}
+/* Hero lines rise softly once the letter opens */
+.rise{opacity:0;transform:translateY(18px)}
+body.go .rise{opacity:1;transform:none;transition:opacity 1.3s ease var(--d,0s),transform 1.3s ease var(--d,0s)}
+/* Thread draws down, then each event and its dot appear in turn */
+.fade.in .thread::before{transform:scaleY(1)}
+.fade.in .ev{opacity:1;transform:none}
+.fade.in .ev::before{transform:scale(1)}
+.ev:nth-child(1){transition-delay:.4s}.ev:nth-child(2){transition-delay:1s}.ev:nth-child(3){transition-delay:1.6s}
+.ev:nth-child(1)::before{transition-delay:.5s}.ev:nth-child(2)::before{transition-delay:1.1s}.ev:nth-child(3)::before{transition-delay:1.7s}
+/* Album tiles bloom in one by one */
+.tile{opacity:0;transform:scale(.94);transition:opacity .9s ease,transform .9s ease}
+.fade.in .tile{opacity:1;transform:none}
+.tile:nth-child(2){transition-delay:.15s}.tile:nth-child(3){transition-delay:.3s}.tile:nth-child(4){transition-delay:.45s}.tile:nth-child(5){transition-delay:.6s}.tile:nth-child(6){transition-delay:.75s}
+/* Seconds breathe gently */
+#s{animation:breathe 1s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.08);opacity:.85}}
+/* Drifting petals after the letter opens */
+.petal{position:fixed;top:0;width:10px;height:14px;border-radius:80% 0 80% 0;background:var(--rose);opacity:0;pointer-events:none;z-index:5;animation:fall linear infinite;will-change:transform}
+@keyframes fall{0%{transform:translate3d(0,-8vh,0) rotate(0);opacity:0}10%{opacity:.5}90%{opacity:.4}100%{transform:translate3d(var(--dx),108vh,0) rotate(400deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero::before,.seal,#s{animation:none}.petal{display:none}#reveal,.flap,.fade,.ev,.tile,.thread::before,.ev::before{transition:none}.fade,.rise,.ev,.tile{opacity:1;transform:none}.thread::before,.ev::before{transform:none}}
+</style>
+</head>
+<body class="locked">
+
+<!-- Opening: tap the seal -->
+<div id="reveal">
+  <div>
+    <div class="envelope"><div class="flap"></div><button class="seal" id="seal" aria-label="Open the invitation">J&amp;A</button></div>
+    <p class="hint">A letter for you. Tap the seal to open.</p>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="lead rise" style="--d:.2s">Two best friends from school are getting married</p>
+    <h1 class="names"><span class="rise" style="--d:.6s">Jahnavi</span><i class="rise" style="--d:1s">&amp;</i><span class="rise" style="--d:1.3s">Anudeep</span></h1>
+    <p class="lead rise" style="--d:1.8s">With joyful hearts, we invite you to the beginning of our forever</p>
+    <p class="date rise" style="--d:2.2s">Wednesday, November 25, 2026</p>
+    <a class="btn rise" style="--d:2.5s" href="#countdown">Save the date</a>
+  </div>
+</header>
+
+<section id="story"><div class="wrap note fade">
+  <div class="rule"></div>
+  <p>We sat in the same classrooms, shared the same lunches and grew up side by side.</p>
+  <p>Now we are choosing each other for life, and we would love for you to be there.</p>
+</div></section>
+
+<section id="countdown"><div class="wrap fade">
+  <h2>Until our forever</h2>
+  <p class="sub">The Muhurtham is on November 25, at 8:27 PM IST</p>
+  <div class="count" id="count" role="timer" aria-live="off">
+    <div><b id="d">0</b><small>days</small></div>
+    <div><b id="h">0</b><small>hours</small></div>
+    <div><b id="m">0</b><small>minutes</small></div>
+    <div><b id="s">0</b><small>seconds</small></div>
+  </div>
+  <p id="done">Just Married</p>
+</div></section>
+
+<section id="events"><div class="wrap fade">
+  <h2>Come celebrate with us</h2>
+  <p class="sub">Every moment is better with you in it</p>
+  <div class="thread" id="thread"></div>
+</div></section>
+
+<section id="album"><div class="wrap fade">
+  <h2>From our engagement</h2>
+  <p class="sub">A few moments we are happy to share with you</p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<footer><div class="wrap fade">
+  <div class="rule"></div>
+  <p class="names">Jahnavi &amp; Anudeep</p>
+  <p>We can’t wait to celebrate with you.</p>
+</div></footer>
+
+<div id="lb" role="dialog" aria-label="Photo viewer"><img alt="Engagement ceremony photo, enlarged"></div>
+
+<script>
+/* ===== DETAILS (exactly as given; India time) =====
+Haldi: November 23, 10AM onwards, Kaveri Resorts, Khammam, Telangana. Dress code: Yellow traditional
+Mehendi: November 23, 2PM onwards, Kaveri Resorts, Khammam, Telangana
+Wedding: November 25, Muhurtham 8:27PM, Lakshmi Gardens, Khammam. Dinner from 8PM */
+var M1="https://maps.app.goo.gl/r241N5DLjdo7rDzd8?g_st=ic";
+var M2="https://maps.app.goo.gl/L9PGvLcWR2qfq5fs7?g_st=ic";
+var EV=[
+ {n:"Haldi",d:"Monday, November 23",t:"10:00 AM onwards",v:"Kaveri Resorts, Khammam, Telangana",dc:"Yellow traditional",m:M1,a:"20261123T100000",b:"20261123T130000"},
+ {n:"Mehendi",d:"Monday, November 23",t:"2:00 PM onwards",v:"Kaveri Resorts, Khammam, Telangana",m:M1,a:"20261123T140000",b:"20261123T170000"},
+ {n:"Wedding",d:"Wednesday, November 25",t:"Muhurtham at 8:27 PM",x:"Dinner from 8:00 PM",v:"Lakshmi Gardens, Khammam",m:M2,a:"20261125T200000",b:"20261125T230000"}
+];
+var th=document.getElementById("thread");
+EV.forEach(function(e){
+ var cal="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.n+" – Jahnavi & Anudeep")+"&dates="+e.a+"/"+e.b+"&ctz=Asia%2FKolkata&location="+encodeURIComponent(e.v);
+ var el=document.createElement("article");el.className="ev";
+ el.innerHTML="<h3>"+e.n+"</h3><p class='when'>"+e.d+", "+e.t+"</p><p>"+(e.x?e.x+"<br>":"")+e.v+(e.dc?"<br>Dress code: "+e.dc:"")+"</p>"+
+ "<div class='row'><a class='btn fill' href='"+e.m+"' target='_blank' rel='noopener'>Get directions</a><a class='btn' href='"+cal+"' target='_blank' rel='noopener'>Add to calendar</a></div>";
+ th.appendChild(el);
+});
+
+/* Engagement album: add files engagement1.jpg to engagement4.jpg and engagement-video1.mp4, engagement-video2.mp4 beside index.html */
+var G=[["v","engagement-video1.mp4",1],["i","engagement1.jpg"],["i","engagement2.jpg"],["i","engagement3.jpg"],["i","engagement4.jpg"],["v","engagement-video2.mp4",1]];
+var heart="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.4' aria-hidden='true'><path d='M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z'/></svg>";
+var gr=document.getElementById("grid");
+G.forEach(function(g,i){
+ var t=document.createElement("div");t.className="tile"+(g[2]?" wide":"");t.innerHTML=heart;
+ var m=document.createElement(g[0]=="v"?"video":"img");
+ if(g[0]=="v"){m.controls=true;m.preload="metadata";m.playsInline=true;m.setAttribute("aria-label","Engagement ceremony video "+(i+1))}
+ else{m.alt="Engagement ceremony photo "+(i+1);m.loading="lazy";m.addEventListener("click",function(){var l=document.getElementById("lb");l.querySelector("img").src=m.src;l.classList.add("on")})}
+ m.addEventListener("error",function(){m.remove()});
+ m.src=g[1];t.appendChild(m);gr.appendChild(t);
+});
+var lb=document.getElementById("lb");
+lb.addEventListener("click",function(){lb.classList.remove("on")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on")});
+
+/* Countdown: fixed +05:30 (IST) so it is right in every country */
+var T=new Date("2026-11-25T20:27:00+05:30").getTime();
+function tick(){
+ var s=Math.floor((T-Date.now())/1000);
+ if(s<=0){document.getElementById("count").style.display="none";document.getElementById("done").style.display="block";return}
+ document.getElementById("d").textContent=Math.floor(s/86400);
+ document.getElementById("h").textContent=Math.floor(s%86400/3600);
+ document.getElementById("m").textContent=Math.floor(s%3600/60);
+ document.getElementById("s").textContent=s%60;
+}
+tick();setInterval(tick,1000);
+
+/* Opening letter */
+var rv=document.getElementById("reveal"),still=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+function petals(){if(still)return;var n=innerWidth<600?10:16;for(var i=0;i<n;i++){var p=document.createElement("span");p.className="petal";p.setAttribute("aria-hidden","true");p.style.left=(Math.random()*100)+"vw";p.style.setProperty("--dx",(Math.random()*120-60)+"px");p.style.animationDuration=(12+Math.random()*10)+"s";p.style.animationDelay=(Math.random()*10)+"s";document.body.appendChild(p)}}
+function openIt(){rv.classList.add("open");document.body.classList.remove("locked");document.body.classList.add("go");petals();setTimeout(function(){rv.style.display="none"},still?0:1200)}
+if(still){rv.style.display="none";document.body.classList.remove("locked");document.body.classList.add("go")}
+document.getElementById("seal").addEventListener("click",openIt);
+
+/* Gentle fade-in on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.15});
+document.querySelectorAll(".fade").forEach(function(n){io.observe(n)});
+</script>
+</body>
+</html>
